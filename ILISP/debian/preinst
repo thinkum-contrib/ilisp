@@ -1,0 +1,28 @@
+#! /bin/sh -e
+
+# summary of how this script can be called:
+#        * <new-preinst> `install'
+#        * <new-preinst> `install' <old-version>
+#        * <new-preinst> `upgrade' <old-version>
+#        * <old-preinst> `abort-upgrade' <new-version>
+
+case "$1" in
+    install|upgrade)
+	rm -rf /usr/share/common-lisp/source/ilisp
+	rm -rf /usr/lib/ilisp /usr/share/ilisp
+	mkdir -p /usr/lib/ilisp
+	chown -R cl-builder.cl-builder /usr/lib/ilisp
+	;;
+    abort-upgrade)
+	;;
+    *)
+        echo "preinst called with unknown argument \`$1'" >&2
+        exit 0
+    ;;
+esac
+
+#DEBHELPER#
+
+exit 0
+
+
