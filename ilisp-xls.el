@@ -13,6 +13,7 @@
 
 ;;; Thanks to John Walker for supplying this file.
 
+(require 'ilisp-dia)
 
 (defdialect xlisp "Xlisp" ilisp
   (setq ilisp-load-command "(load \"%s\")"

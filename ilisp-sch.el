@@ -13,6 +13,7 @@
 
 (require 'cl)				; Sorry. I couldn't resist
 					; 19990818 Marco Antoniotti
+(require 'ilisp-dia)
 
 ;;; Scheme
 

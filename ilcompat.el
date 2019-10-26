@@ -23,13 +23,22 @@
 	   'lucid-19-new))
 	((string-match "^19" emacs-version)
 	 'fsf-19)
-	((string-match "^20" emacs-version)
-	 'fsf-20)
-	((string-match "^21" emacs-version)
-	 'fsf-21)
+        ((and (boundp 'emacs-major-version)
+              (<= (symbol-value 'emacs-major-version)
+                  21))
+         (intern (concat "fsf-"
+                         (prin1-to-string emacs-major-version))))
+        ((and (boundp 'emacs-major-version)
+              (> (symbol-value 'emacs-major-version)
+                 21))
+         'fsf-21)
 	(t 'fsf-18))
   "The major version of (X)Emacs ILISP is running in.
 Declared as '(member fsf-19 fsf-19 fsf-20 fsf-21 lucid-19 lucid-19-new xemacs).
+
+As a matter of convenience, the symbol fsf-21 will be used for Emacs
+major verions greater than 21,
+
 Set in ilcompat.el.")
 
 

@@ -19,6 +19,7 @@
 ;;;
 ;;; $Id: ilisp-hlw.el,v 1.3 2002/08/23 21:40:09 anisotropy9 Exp $
 
+(require 'ilisp-dia)
 
 (defvar ilisp-lispworks-init-file "lispworks.lisp")
 

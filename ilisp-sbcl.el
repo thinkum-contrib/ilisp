@@ -12,6 +12,9 @@
 ;;; $Id: ilisp-sbcl.el,v 1.20 2003/10/04 21:10:30 kevinrosenberg Exp $
 
 ;;;%%%Steel Bank Common Lisp
+
+(require 'ilisp-dia)
+
     
 (defvar ilisp-sbcl-init-file
   ;; Note: The init file source extension (".lisp") needs to be

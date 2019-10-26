@@ -11,6 +11,8 @@
 ;;;
 ;;; $Id: ilisp-cl.el,v 1.10 2002/09/24 21:39:53 anisotropy9 Exp $
 
+(require 'ilisp-dia)
+
 (defvar ilisp-cl-ilisp-package-file "ilisp-pkg.lisp")
 
 (defvar ilisp-cl-ilisp-init-file "cl-ilisp.lisp")

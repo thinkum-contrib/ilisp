@@ -121,7 +121,8 @@
 
 		   )))
       (dolist (f files)
-        (byte-compile-file (format "%s.el" f) 0))
+        (or (byte-compile-file (format "%s.el" f) 0)
+            (error "Errors while byte compiling %s" f)))
       ;;Main mode file
       (byte-compile-file "ilisp.el")
       (message "Done compiling and loading ILISP."))))

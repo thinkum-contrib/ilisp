@@ -13,6 +13,7 @@
 ;;;
 ;;;
 
+(require 'ilisp-dia)
 
 ;;;%%%OpenMCL
 (defvar ilisp-openmcl-init-file "openmcl.lisp")

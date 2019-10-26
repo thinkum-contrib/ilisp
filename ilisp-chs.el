@@ -12,6 +12,7 @@
 ;;; $Id: ilisp-chs.el,v 1.8 2003/05/30 16:39:47 bill_clementson Exp $
 
 (require 'cl)
+(require 'ilisp-dia)
 
 ;;; clisp-hs-check-prompt doesn't after the first break because the
 ;;; number of ">" characters doesn't increase.

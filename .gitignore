@@ -1,5 +1,6 @@
 *~
 *#
+*.elc
 build-stamp
 debian/.debhelper
 debian/*.debhelper

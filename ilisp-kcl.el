@@ -11,6 +11,8 @@
 ;;;
 ;;; $Id: ilisp-kcl.el,v 1.5 2002/02/24 16:02:23 amoroso Exp $
 
+(require 'ilisp-dia)
+
 ;;;%%%KCL--these dialects by Tom Emerson
 ;;; kcl-check-prompt doesn't after the first break because the
 ;;; number of ">" characters doesn't increase.

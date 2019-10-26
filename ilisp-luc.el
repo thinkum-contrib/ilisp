@@ -11,6 +11,8 @@
 ;;;
 ;;; $Id: ilisp-luc.el,v 1.3 2002/08/23 21:40:09 anisotropy9 Exp $
 
+(require 'ilisp-dia)
+
 ;;;%%%Lucid
 (defvar ilisp-lucid-init-file "lucid.lisp")
 

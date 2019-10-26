@@ -12,6 +12,8 @@
 ;;;
 ;;; $Id: ilisp-cmu.el,v 1.6 2003/04/02 01:56:20 rgrjr Exp $
 
+(require 'ilisp-dia)
+
 (defvar cmulisp-source-directory-regexp 
   "\\/afs\\/cs\\.cmu\\.edu\\/project\\/clisp\\/src\\/[0-9]*\\/"
   "*Regexp to match cmulisp source code directory.")

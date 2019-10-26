@@ -15,6 +15,7 @@
 ;;;
 ;;; $Id: ilisp-acl.el,v 1.4 2003/04/02 01:56:20 rgrjr Exp $
 
+(require 'ilisp-dia)
 
 ;;;%%%Allegro
 (defvar ilisp-allegro-init-file "allegro.lisp")

@@ -116,31 +116,31 @@ hook for that LISP will be called DIALECT-hook.  The default program
 will be DIALECT-program.  FULL-NAME is a string that describes the
 inferior LISP.  PARENT is the name of the parent dialect."
 
-  (let ((setup (read (format "setup-%s" dialect)))
-	(hook (read (format "%s-hook" dialect)))
-	(program (read (format "%s-program" dialect)))
+  (let ((setup (intern (format "setup-%s" dialect)))
+        (setup-parent (intern (format "setup-%s" parent)))
+	(hook (intern (format "%s-hook" dialect)))
+	(program (intern (format "%s-program" dialect)))
 	(dialects (format "%s" dialect)))
-    (`
-     (progn
-       (defvar (, hook) nil (, (format "*Inferior %s hook." full-name)))
-       (defvar (, program) nil
-	 (, (format "*Inferior %s default program." full-name)))
-       (defun (, setup) (buffer)
-	 (, (format "Set up for interacting with %s." full-name))
-	 (, (read (format "(setup-%s buffer)" parent)))
-	 (,@ body)
-	 (setq ilisp-program (or (, program) ilisp-program)
-	       ilisp-dialect (cons '(, dialect) ilisp-dialect))
-	 (run-hooks '(, (read (format "%s-hook" dialect)))))
-       (defun (, dialect) (&optional buffer program)
-	 (, (format "Create an inferior %s.  With prefix, prompt for buffer and program."
-		   full-name))
+    `(progn
+       (defvar ,hook nil ,(format "*Inferior %s hook." full-name))
+       (defvar ,program nil
+	 ,(format "*Inferior %s default program." full-name))
+       (defun ,setup (buffer)
+	 ,(format "Set up for interacting with %s." full-name)
+	 (,setup-parent buffer)
+	 ,@body
+	 (setq ilisp-program (or ,program ilisp-program)
+	       ilisp-dialect (cons (quote ,dialect) ilisp-dialect))
+	 (run-hooks (quote ,(intern (format "%s-hook" dialect)))))
+       (defun ,dialect (&optional buffer program)
+	 ,(format "Create an inferior %s.  With prefix, prompt for buffer and program."
+		   full-name)
 	 (interactive (list nil nil))
-	 (ilisp-start-dialect (or buffer (, dialects)) 
-			      program 
-			      '(, setup))
-	 (setq (, program) ilisp-program))
-       (lisp-add-dialect (, dialects))))))
+	 (ilisp-start-dialect (or buffer ,dialects)
+			      program
+			      (quote ,setup))
+	 (setq ,program ilisp-program))
+       (lisp-add-dialect ,dialects))))
 
 ;;;%%ilisp
 (defun setup-ilisp (buffer)
@@ -222,5 +222,7 @@ With prefix, prompt for buffer name as well."
     (if (not (zerop (length dialect)))
 	(call-interactively (read dialect)))))
 
+
+(provide 'ilisp-dia)
 
 ;;; end of file -- ilisp-dia.lisp --
