@@ -12,12 +12,13 @@ clc_systems	:= usr/share/common-lisp/systems
 compiled_dir	:= usr/lib/ilisp
 info_dir	:= usr/share/info
 doc_dir		:= usr/share/doc/$(pkg-doc)
+shell		:= /bin/sh
 
 build: build-stamp
 build-stamp:
 	dh_testdir
-	# Add here commands to compile the package.
-	(cd docs; make info pdf ilisp.html; cd ..)
+# 	Add here commands to compile the package.
+	${MAKE} -e -C docs info pdf ilisp.html SHELL=${shell}
 	touch build-stamp
 
 install: build
@@ -50,8 +51,8 @@ clean:
 	dh_testdir
 	dh_testroot
 	rm -f build-stamp
-	# Add here commands to clean up after the build process.
-	-$(MAKE) clean
+# 	Add here commands to clean up after the build process.
+	$(MAKE) -e clean SHELL=${shell}
 	dh_clean
 
 binary-indep: build install
